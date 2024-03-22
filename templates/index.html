@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<body>
+    <h1>Books with Highest Discount Percentage</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Publisher</th>
+                <th>Author</th>
+                <th>Discounted Price</th>
+                <th>Discount Percentage</th>
+                <th>New Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book['Book Name'] }}</td>
+                <td>{{ book['Publisher'] }}</td>
+                <td>{{ book['Author'] }}</td>
+                <td>{{ book['Discounted Price'] }}</td>
+                <td>{{ book['Discount Percentage'] }}</td>
+                <td>{{ book['New Price'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
