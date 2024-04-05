@@ -31,5 +31,22 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div>
+        {% if page > 1 %}
+            <form action="/" method="GET">
+                <button type="submit" name="page" value="{{ page - 1 }}">Previous</button>
+            </form>
+        {% endif %}
+
+        Page {{ page }} of {{ total_pages }}
+
+        {% if page < total_pages %}
+            <form action="/" method="GET">
+                <button type="submit" name="page" value="{{ page + 1 }}">Next</button>
+            </form>
+        {% endif %}
+    </div>
 </body>
 </html>
