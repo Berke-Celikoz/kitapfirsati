@@ -31,5 +31,13 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% if page > 1 %}
+    <a href="?page={{ page - 1 }}">Previous Page</a>
+    {% endif %}
+
+    {% if books|length >= BOOKS_PER_PAGE %}
+    <a href="?page={{ page + 1 }}">Next Page</a>
+    {% endif %}
 </body>
 </html>
