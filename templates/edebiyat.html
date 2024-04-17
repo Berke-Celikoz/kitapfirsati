@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <style>
+        /* Header Styles */
+        .header {
+            background-color: #333; /* Background color of the header */
+            color: #fff; /* Text color */
+            padding: 10px; /* Padding inside the header */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .btn-container {
+            display: flex;
+            gap: 10px;
+        }
+        .header .btn-container button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff; /* Button background color */
+            color: #fff; /* Button text color */
+            cursor: pointer;
+        }
+        /* Book Container Styles */
+        .book-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        .book {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        /* Pagination Styles */
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination a {
+            margin-right: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>KitapFirsati.com</h1>
+        <div class="btn-container">
+            <button>Login</button>
+            <button>Signup</button>
+        </div>
+    </div>
+
+    <!-- Book Listings -->
+    <h2 style="text-align: center;">Fiyatı En Çok Düşen Kitaplar</h2>
+    <div class="book-container">
+        {% for book in books %}
+        <div class="book">
+            <h3>{{ book['Book Name'] }}</h3>
+            <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
+            <p><strong>Yazar:</strong> {{ book['Author'] }}</p>
+            <p><strong>Eski Fiyat:</strong> {{ book['Discounted Price'] }}</p>
+            <p><strong>İndirim Oranı:</strong> {{ book['Discount Percentage'] }}</p>
+            <p><strong>Yeni Fiyat:</strong> {{ book['New Price'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page=1">First</a>
+            <a href="/?page={{ page - 1 }}">Previous</a>
+        {% endif %}
+
+        {% set start_page = page - 2 if page > 2 else 1 %}
+        {% set end_page = start_page + 4 if start_page + 4 <= total_pages else total_pages %}
+        
+        {% for num in range(start_page, end_page + 1) %}
+            {% if num == page %}
+                <strong>{{ num }}</strong>
+            {% else %}
+                <a href="/?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page < total_pages %}
+            <a href="/?page={{ page + 1 }}">Next</a>
+            <a href="/?page={{ total_pages }}">Last</a>
+        {% endif %}
+    </div>
+</body>
+</html>
