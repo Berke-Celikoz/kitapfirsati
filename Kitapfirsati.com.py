@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, request
 import pandas as pd
 
 app = Flask(__name__)
