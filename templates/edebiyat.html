@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
     <style>
-        /* Header Styles */
         .header {
-            background-color: #333; /* Background color of the header */
-            color: #fff; /* Text color */
-            padding: 10px; /* Padding inside the header */
+            background-color: #333; 
+            color: #fff; 
+            padding: 10px; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -24,11 +23,11 @@
         .header .btn-container button {
             padding: 5px 10px;
             border: none;
-            background-color: #007bff; /* Button background color */
-            color: #fff; /* Button text color */
+            background-color: #007bff; 
+            color: #fff; 
             cursor: pointer;
         }
-        /* Book Container Styles */
+        
         .book-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -39,7 +38,7 @@
             padding: 10px;
             text-align: center;
         }
-        /* Pagination Styles */
+        
         .pagination {
             margin-top: 20px;
             text-align: center;
@@ -51,7 +50,7 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <div class="header">
         <h1>KitapFirsati.com</h1>
         <div class="btn-container">
@@ -60,7 +59,6 @@
         </div>
     </div>
 
-    <!-- Book Listings -->
     <h2 style="text-align: center;">Fiyatı En Çok Düşen Edebiyat Kitapları</h2>
     <div class="book-container">
         {% for book in books %}
@@ -75,7 +73,6 @@
         {% endfor %}
     </div>
 
-    <!-- Pagination -->
     <div class="pagination">
         {% if page > 1 %}
             <a href="/edebiyat?page=1">First</a>

@@ -11,7 +11,7 @@ headers = {
 
 data = []
 
-for page_number in range(1, 331):
+for page_number in range(1, 50):
     url = f"https://www.bkmkitap.com/edebiyat-kitaplari?pg={page_number}"
     page = requests.get(url, headers=headers).text  # connect to the website
     soup = BeautifulSoup(page, "html.parser")
@@ -46,6 +46,9 @@ for page_number in range(1, 331):
 
         new_price = i.find("div", class_="currentPrice").text.strip().split("\n")[0].strip()
         product_data['New Price'] = new_price.replace('TL', '')
+
+        img_url = i.find("img", class_="stImage")["data-src"]
+        product_data['Image URL'] = img_url
 
         # Append the dictionary to the list
         data.append(product_data)
