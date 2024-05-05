@@ -5,64 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books</title>
     <style>
-        .header {
-            background-color: #333; 
-            color: #fff; 
-            padding: 10px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header h1 {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
             margin: 0;
+            padding: 0;
+            color: #000000;
+            background-image: url('https://images.alphacoders.com/132/1326370.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: 1;
+            height: 100vh;
         }
-        .header .btn-container {
+        .heading-container {
             display: flex;
-            gap: 10px;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            height: 10vh; /* Set the height of the container */
         }
-        .header .btn-container button {
-            padding: 5px 10px;
-            border: none;
-            background-color: #007bff; 
-            color: #fff; 
-            cursor: pointer;
+        .heading-style {
+            color: #000000;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 10px;
+            background-color: rgba(239, 226, 226, 0.716);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block; /* Set display to inline-block */
+            max-width: 80%;
         }
-        
         .book-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 20px;
+            grid-gap: 10px;
+            padding: 10px;
         }
         .book {
-            border: 1px solid #ccc;
+            border: 1px solid #1f6d53;
             padding: 10px;
             text-align: center;
+            background-color: #f9f8f8;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            border-radius: 10px;
         }
-        
+        .book:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .book img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 5px;
+            width: 150px; /* Set the desired width */
+            height: 200px; /* Set the desired height */
+            object-fit: cover; /* Ensure the image covers the specified dimensions */
+        }
         .pagination {
-            margin-top: 20px;
+            margin-top: 10px;
             text-align: center;
         }
         .pagination a {
             margin-right: 5px;
             text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        .pagination a:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>KitapFirsati.com</h1>
-        <div class="btn-container">
-            <button>Giriş Yap</button>
-            <button>Kayıt ol</button>
-        </div>
+        <a href="/" style="text-decoration: none; color: #fff;">
+            <h1>KitapFirsati.com</h1>
+        </a>
+    </div>
+    
+    <div class="heading-container">
+        <h2 class="heading-style">Fiyatı En Çok Düşen Edebiyat Kitapları</h2>
     </div>
 
-    <h2 style="text-align: center;">Fiyatı En Çok Düşen Edebiyat Kitapları</h2>
     <div class="book-container">
         {% for book in books %}
         <div class="book">
+            <img src="{{ book['Image URL'] }}" alt="{{ book['Book Name'] }}">
             <h3>{{ book['Book Name'] }}</h3>
             <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
             <p><strong>Yazar:</strong> {{ book['Author'] }}</p>

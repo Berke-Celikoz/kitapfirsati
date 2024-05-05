@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 df = pd.read_csv('scraped_data.csv')
 
-BOOKS_PER_PAGE = 20
+BOOKS_PER_PAGE = 24
 
 @app.route('/')
 def home():
