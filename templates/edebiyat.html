@@ -93,15 +93,17 @@
 
     <div class="book-container">
         {% for book in books %}
-        <div class="book">
-            <img src="{{ book['Image URL'] }}" alt="{{ book['Book Name'] }}">
-            <h3>{{ book['Book Name'] }}</h3>
-            <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
-            <p><strong>Yazar:</strong> {{ book['Author'] }}</p>
-            <p><strong>Eski Fiyat:</strong> {{ book['Discounted Price'] }}</p>
-            <p><strong>İndirim Oranı:</strong> {{ book['Discount Percentage'] }}</p>
-            <p><strong>Yeni Fiyat:</strong> {{ book['New Price'] }}</p>
-        </div>
+        <a href="/book/{{ book['Unique ID'] }}" style="text-decoration: none; color: inherit;">
+            <div class="book">
+                <img src="{{ book['Image URL'] }}" alt="{{ book['Book Name'] }}">
+                <h3>{{ book['Book Name'] }}</h3>
+                <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
+                <p><strong>Yazar:</strong> {{ book['Author'] }}</p>
+                <p><strong>Eski Fiyat:</strong> {{ book['Discounted Price'] }}</p>
+                <p><strong>İndirim Oranı:</strong> {{ book['Discount Percentage'] }}</p>
+                <p><strong>Yeni Fiyat:</strong> {{ book['New Price'] }}</p>
+            </div>
+        </a>
         {% endfor %}
     </div>
 

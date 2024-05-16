@@ -11,6 +11,17 @@ BOOKS_PER_PAGE = 24
 def home():
     return render_template('home.html')
 
+@app.route('/book/<unique_id>')
+def book_details(unique_id):
+    # Check if the unique_id exists in the DataFrame
+    if unique_id in df["Unique ID"].values:
+        # Fetch the book data for the given unique_id
+        book = df[df["Unique ID"] == unique_id].iloc[0].to_dict()
+        return render_template('book_details.html', book=book)
+    else:
+        # If the book with the given unique_id is not found, render a custom not found page
+        return render_template('not_found.html'), 404
+
 @app.route('/edebiyat')
 def edebiyat():
     page = int(request.args.get('page', 1))

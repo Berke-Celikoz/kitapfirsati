@@ -1,6 +1,7 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
+import uuid
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
@@ -11,7 +12,7 @@ headers = {
 
 data = []
 
-for page_number in range(1, 50):
+for page_number in range(1, 20):
     url = f"https://www.bkmkitap.com/edebiyat-kitaplari?pg={page_number}"
     page = requests.get(url, headers=headers).text  # connect to the website
     soup = BeautifulSoup(page, "html.parser")
@@ -22,6 +23,8 @@ for page_number in range(1, 50):
     for i in product_items:
         # Create a dictionary to store the scraped data for each product
         product_data = {}
+
+        product_data['Unique ID'] = str(uuid.uuid4())
 
         # Extracting book name
         product_data['Book Name'] = i.find("a", class_="fl col-12 text-description detailLink").text.strip()
@@ -42,7 +45,7 @@ for page_number in range(1, 50):
             product_data['Discount Percentage'] = i.find("div", class_="text-line discountedPrice").find("span").text.strip()[1:4]
             print(i.find("div", class_="text-line discountedPrice").find("span").text.strip()[1:3])
         except AttributeError:
-            product_data['Discounted Percentage'] = None
+            product_data['Discount Percentage'] = None
 
         new_price = i.find("div", class_="currentPrice").text.strip().split("\n")[0].strip()
         product_data['New Price'] = new_price.replace('TL', '')
