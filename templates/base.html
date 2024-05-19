@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}KitapFirsati{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-image: url('https://images.alphacoders.com/132/1326370.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat:repeat;
+        }
+        .header {
+            background-color: #33333300;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .auth-buttons button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #01050abb;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .auth-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" style="text-decoration: none; color: #fff;">
+            <h1>KitapFirsati.com</h1>
+        </a>
+        <div class="auth-buttons">
+            {% if 'kullanici' in session %}
+                <button onclick="window.location.href='/profile'">Profil</button>
+                <button onclick="window.location.href='/logout'">Çıkış</button>
+            {% else %}
+                <button onclick="window.location.href='/giris'">Giriş Yap</button>
+                <button onclick="window.location.href='/uye-ol'">Kayıt Ol</button>
+            {% endif %}
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             color: #c61010;
-            background-image: url('https://images.alphacoders.com/132/1326370.png'); /* Updated background image URL */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh; /* Set the height to fill the viewport height */
+            height: 100vh;
         }
         .container {
-            max-width: 5000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0px;
+            padding: 0;
             overflow: hidden;
-            text-align: center; /* Center-align the content */
+            text-align: center;
+            position: relative;
         }
         h1 {
             color: #f7f8f5;
@@ -29,10 +25,10 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         .transparent-bg {
-            background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 10px;
-            border-radius: 10px; /* Add border radius for rounded corners */
-            display: inline-block; /* Make the container fit its content */
+            border-radius: 10px;
+            display: inline-block;
         }
         ul {
             list-style-type: none;
@@ -43,11 +39,11 @@
             gap: 20px;
         }
         li {
-            font-size: 18px; /* Adjusted font size */
+            font-size: 18px;
             text-align: center;
             border-radius: 10px;
             background-color: #01040688;
-            padding: 10px 15px; /* Adjusted padding */
+            padding: 10px 15px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease;
         }
@@ -62,18 +58,15 @@
             font-weight: bold;
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <h1>
             <div class="transparent-bg">KitapFirsati.com</div>
         </h1>
         <ul>
-            <li>
-                <a href="/edebiyat">Edebiyat Kitapları</a>
+            <li><a href="/edebiyat">Edebiyat Kitapları</a></li>
             <li><a href="/bilim">Bilim Kitapları</a></li>
             <li><a href="/cizgiromanlar">Çizgi Romanlar</a></li>
         </ul>
     </div>
-</body>
-</html>
+{% endblock %}

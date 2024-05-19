@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+{% extends "base.html" %}
+
+{% block title %}Edebiyat Kitapları{% endblock %}
+
+{% block content %}
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,17 +10,13 @@
             margin: 0;
             padding: 0;
             color: #000000;
-            background-image: url('https://images.alphacoders.com/132/1326370.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: 1;
             height: 100vh;
         }
         .heading-container {
             display: flex;
-            justify-content: center; /* Horizontally center */
-            align-items: center; /* Vertically center */
-            height: 10vh; /* Set the height of the container */
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
         }
         .heading-style {
             color: #000000;
@@ -31,7 +26,7 @@
             background-color: rgba(239, 226, 226, 0.716);
             padding: 10px;
             border-radius: 10px;
-            display: inline-block; /* Set display to inline-block */
+            display: inline-block;
             max-width: 80%;
         }
         .book-container {
@@ -57,9 +52,9 @@
             max-width: 100%;
             height: auto;
             margin-bottom: 5px;
-            width: 150px; /* Set the desired width */
-            height: 200px; /* Set the desired height */
-            object-fit: cover; /* Ensure the image covers the specified dimensions */
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
         }
         .pagination {
             margin-top: 10px;
@@ -68,8 +63,8 @@
         .pagination a {
             margin-right: 5px;
             text-decoration: none;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #f1f4f8d6;
+            color: #0b0101;
             padding: 3px 8px;
             border-radius: 3px;
             transition: background-color 0.3s ease;
@@ -78,15 +73,7 @@
             background-color: #0056b3;
         }
     </style>
-</head>
-<body>
 
-    <div class="header">
-        <a href="/" style="text-decoration: none; color: #fff;">
-            <h1>KitapFirsati.com</h1>
-        </a>
-    </div>
-    
     <div class="heading-container">
         <h2 class="heading-style">Fiyatı En Çok Düşen Edebiyat Kitapları</h2>
     </div>
@@ -109,8 +96,8 @@
 
     <div class="pagination">
         {% if page > 1 %}
-            <a href="/edebiyat?page=1">First</a>
-            <a href="/edebiyat?page={{ page - 1 }}">Previous</a>
+            <a href="/edebiyat?page=1">İlk</a>
+            <a href="/edebiyat?page={{ page - 1 }}">Önceki</a>
         {% endif %}
 
         {% set start_page = page - 2 if page > 2 else 1 %}
@@ -125,9 +112,8 @@
         {% endfor %}
 
         {% if page < total_pages %}
-            <a href="/edebiyat?page={{ page + 1 }}">Next</a>
-            <a href="/edebiyat?page={{ total_pages }}">Last</a>
+            <a href="/edebiyat?page={{ page + 1 }}">Sonraki</a>
+            <a href="/edebiyat?page={{ total_pages }}">Son</a>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}

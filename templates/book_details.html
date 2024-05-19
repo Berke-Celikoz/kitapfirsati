@@ -1,58 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ book['Book Name'] }} Details</title>
+{% extends "base.html" %}
+
+{% block title %}{{ book['Book Name'] }}{% endblock %}
+
+{% block content %}
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 12px;
+            font-size: 16px;
             margin: 0;
             padding: 0;
             color: #000000;
-            background-image: url('https://images.alphacoders.com/132/1326370.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: 1;
             height: 100vh;
         }
         .container {
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin: 100px auto 0; /* Added top margin */
-            max-width: 800px;
-            padding-right: 500px;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 50px auto;
+            max-width: 1200px;
+        }
+        .title {
+            text-align: left;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+        .content {
+            display: flex;
+            align-items: stretch;
         }
         .book-image {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 5px;
-            width: 500px; /* Set the desired width */
-            height: 500px; /* Set the desired height */
-            object-fit: cover; /* Ensure the image covers the specified dimensions */
-            margin-right: 200px;
+            width: 300px;
+            height: 500px;
+            object-fit: cover;
+            margin-left: 20px;
+            margin-right: 20px;
         }
         .book-details {
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-right: 20px;
         }
-        .book-details p {
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+            width: 250px;
+        }
+        .details-container p {
             margin: 0 0 10px 0;
+            font-size: 25px;
+        }
+        .summary-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: #000;
+        }
+        .add-to-cart-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .kitap-firsati-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .kitap-firsati-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.53);
+        }
+        .auth-buttons {
+            position: absolute;
+            right: 20px;
+            align-items: center;
+            top: 20px;
+        }
+        .comments-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+        }
+        .comments-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .comment {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .comment p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="{{ book['Image URL'] }}" alt="{{ book['Book Name'] }}" class="book-image">
-        <div class="book-details">
-            <h1>{{ book['Book Name'] }} Details</h1>
-            <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
-            <p><strong>Yazar:</strong> {{ book['Author'] }}</p>
-            <p><strong>Eski Fiyat:</strong> {{ book['Discounted Price'] }}</p>
-            <p><strong>İndirim Oranı:</strong> {{ book['Discount Percentage'] }}</p>
-            <p><strong>Yeni Fiyat:</strong> {{ book['New Price'] }}</p>
+        <h1 class="title">{{ book['Book Name'] }}</h1>
+        <div class="content">
+            <img src="{{ book['Image URL'] }}" alt="{{ book['Book Name'] }}" class="book-image">
+            <div class="book-details">
+                <div class="details-container">
+                    <p><strong>Yayıncı:</strong> {{ book['Publisher'] }}</p>
+                    <p><strong>Yazar:</strong> {{ book['Author'] }}</p>
+                    <p><strong>Eski Fiyat:</strong> {{ book['Discounted Price'] }}</p>
+                    <p><strong>İndirim Oranı:</strong> {{ book['Discount Percentage'] }}</p>
+                    <p><strong>Yeni Fiyat:</strong> {{ book['New Price'] }}</p>
+                </div>
+                <button class="add-to-cart-button">Sepete Ekle</button>
+            </div>
+            <div class="summary-container">
+                <h2 style="text-align: center;">Özet</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+                <p>Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+            </div>
+        </div>
+        <div class="comments-container">
+            <h2>Yorumlar</h2>
+            <div class="comment">
+                <p><strong>Kullanıcı 1:</strong> Bu kitap gerçekten harika!</p>
+            </div>
+            <div class="comment">
+                <p><strong>Kullanıcı 2:</strong> Çok beğendim, herkese tavsiye ederim.</p>
+            </div>
+            <div class="comment">
+                <p><strong>Kullanıcı 3:</strong> İlginç bir hikaye, okumanızı öneririm.</p>
+            </div>
         </div>
     </div>
 </body>
 </html>
+{% endblock %}
